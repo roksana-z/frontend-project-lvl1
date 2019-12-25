@@ -1,0 +1,33 @@
+{
+  "name": "frontend-project-lvl1",
+  "version": "1.0.0",
+  "description": "my first project",
+  "main": "index.js",
+  "bin": {
+    "brain-games": "dist/bin/brain-games.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roksana-z/frontend-project-lvl1.git"
+  },
+  "author": "Roksana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roksana-z/frontend-project-lvl1/issues"
+  },
+  "homepage": "https://github.com/roksana-z/frontend-project-lvl1#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/preset-env": "^7.7.7"
+  }
+}
