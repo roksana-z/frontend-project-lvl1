@@ -4,7 +4,8 @@
   "description": "my first project",
   "main": "index.js",
   "bin": {
-    "brain-games": "dist/bin/brain-games.js"
+    "brain-games": "dist/bin/brain-games.js",
+    "brain-even": "dist/bin/brain-even.js"
   },
   "files": [
     "dist"
@@ -25,9 +26,9 @@
   },
   "homepage": "https://github.com/roksana-z/frontend-project-lvl1#readme",
   "dependencies": {
-   "readline-sync": "^1.4.10"
-},
- "devDependencies": {
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/node": "^7.7.7",
