@@ -1,11 +1,12 @@
 {
   "name": "frontend-project-lvl1",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "my first project",
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js"
   },
   "files": [
     "dist"
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/roksana-z/frontend-project-lvl1#readme",
   "dependencies": {
+    "@hexlet/pairs": "^1.0.10",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
