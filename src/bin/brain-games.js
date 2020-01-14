@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { question } from '..';
+import { greeting } from '..';
 
-
-question();
+greeting();
