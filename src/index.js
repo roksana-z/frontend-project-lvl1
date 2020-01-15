@@ -11,8 +11,21 @@ export const greeting = (game) => {
     case 'calc':
       console.log('Welcome to the Brain Games!\nWhat is the result of the expression?');
       break;
+    case 'gcd':
+      console.log('Welcome to the Brain Games!\nFind the greatest common divisor of given numbers.');
+      break;
     default: break;
   }
+};
+
+export const answer = (name, userAns, actualAns, bool) => {
+  if (bool === true) {
+    const a = 'Correct!';
+    return a;
+  }
+  const b = `'${userAns}' is wrong answer ;(.\nCorrect answer was '${actualAns}'. Let's try again, ${name}`;
+  // eslint-disable-next-line no-useless-return
+  return b;
 };
 
 export const name = () => {
@@ -28,7 +41,7 @@ export const getRandomIntInclusive = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const number = () => getRandomIntInclusive(0, 10);
+export const number = () => getRandomIntInclusive(1, 25);
 
 export const isEven = (arg) => (arg % 2 === 0 ? 'yes' : 'no');
 
