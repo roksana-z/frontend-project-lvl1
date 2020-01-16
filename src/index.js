@@ -14,6 +14,9 @@ export const greeting = (game) => {
     case 'gcd':
       console.log('Welcome to the Brain Games!\nFind the greatest common divisor of given numbers.');
       break;
+    case 'progression':
+      console.log('Welcome to the Brain Games!\nWhat number is missing in the progression?');
+      break;
     default: break;
   }
 };
