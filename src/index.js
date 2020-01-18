@@ -17,6 +17,9 @@ export const greeting = (game) => {
     case 'progression':
       console.log('Welcome to the Brain Games!\nWhat number is missing in the progression?');
       break;
+    case 'prime':
+      console.log('Welcome to the Brain Games!\nAnswer "yes" if given number is prime. Otherwise answer "no".');
+      break;
     default: break;
   }
 };
