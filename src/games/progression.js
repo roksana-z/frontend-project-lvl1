@@ -1,16 +1,17 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable space-infix-ops */
 /* eslint-disable use-isnan */
 import readlineSync from 'readline-sync';
 import {
-  greeting, name, number, answer, getRandomIntInclusive,
+  greeting, getName, randomNumber, answer, getRandomIntInclusive,
 } from '..';
 
-export const createRandomProgression = (amountOfProgression) => {
-  const start = number();
+export const createRandomProgression = (progressionAmount) => {
+  const start = randomNumber();
   const array = [start];
-  const step = number();
+  const step = randomNumber();
   let counter = start;
-  while (array.length < amountOfProgression) {
+  while (array.length < progressionAmount) {
     counter +=step;
     array.push(counter);
   }
@@ -18,42 +19,44 @@ export const createRandomProgression = (amountOfProgression) => {
 };
 
 export const hideDigit = (arr) => {
-  const i = getRandomIntInclusive(0, arr.length - 1);
-  const arr2 = arr;
-  arr2[i] = '..';
-  return arr2;
+  const hiddenI = getRandomIntInclusive(0, arr.length - 1);
+  const newArr = [];
+  for (let index = 0; index <= arr.length - 1; index++) {
+    if (index === hiddenI) {
+      newArr.push('..');
+      index++;
+    }
+    newArr.push(arr[index]);
+  }
+  return newArr.join(' ');
 };
 
-export const findAnswerOfProgression = (arr) => {
-  const a = arr[1] - arr[0];
-  const b = arr[3] - arr[2];
-  for (let i = 0; i <= arr.length; i++) {
-    if (arr[i] === '..') {
-      const previousDigit = arr[i - 1];
-      const currentDigit = previousDigit + a;
-      if (isNaN(currentDigit)) {
-        const nextDigit = arr[i + 1];
-        return nextDigit - b;
-      }
-      return currentDigit;
+
+// eslint-disable-next-line consistent-return
+const findAnswerOfProgression = (arr1, arr2) => {
+  for (let i = 0; i <= arr1.length - 1; i++) {
+    if (!arr2.includes(arr1[i])) {
+      return arr1[i];
     }
   }
 };
 
 export const progressionQuestion = () => {
   greeting('progression');
-  const userName = name();
+  const userName = getName();
   let counter = 0;
   while (counter < 3) {
-    const progression = hideDigit(createRandomProgression(10));
-    console.log(`Question: ${progression}`);
-    const actualAnswer = findAnswerOfProgression(progression);
+    const originalpProgression = createRandomProgression(10);
+    const modifiedProgression = hideDigit(originalpProgression);
+    console.log(`Question: ${modifiedProgression}`);
+    const actualAnswer = findAnswerOfProgression(originalpProgression, modifiedProgression);
     const userAnswer = readlineSync.question('Your answer:');
-    if (userAnswer == actualAnswer) {
+    if (Number(userAnswer) === actualAnswer) {
       console.log(answer(userName(), userAnswer, actualAnswer, true));
-      counter ++;
+      counter++;
     } else {
       console.log(answer(userName(), userAnswer, actualAnswer, false));
+      return;
     }
   }
   console.log(`Congratulations, ${userName()}!`);
