@@ -1,7 +1,15 @@
 {
   "name": "frontend-project-lvl1",
   "version": "1.5.0",
-  "description": "my first project",
+  "description": "set of intelectual games",
+  "keywords": [
+    "brain-games",
+    "calc",
+    "even",
+    "gcd",
+    "prime",
+    "progression"
+  ],
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
