@@ -1,8 +1,10 @@
+/* eslint-disable no-plusplus */
 import readlineSync from 'readline-sync';
 import {
-  greeting, name, number, answer } from '..';
+  greeting, getName, randomNumber, answer,
+} from '..';
 
-export const isPrime = num => {
+export const isPrime = (num) => {
   if (num <= 1) {
     return 'no';
   }
@@ -16,18 +18,19 @@ export const isPrime = num => {
 
 export const isPrimeQuestion = () => {
   greeting('prime');
-  const userName = name();
+  const userName = getName();
   let counter = 0;
   while (counter < 3) {
-    const getNumber = number();
+    const getNumber = randomNumber();
     console.log(`Question: ${getNumber}`);
     const actualAnswer = isPrime(getNumber);
     const userAnswer = readlineSync.question('Your answer:');
-    if (userAnswer == actualAnswer) {
+    if (userAnswer === actualAnswer) {
       console.log(answer(userName(), userAnswer, actualAnswer, true));
-      counter ++;
+      counter++;
     } else {
       console.log(answer(userName(), userAnswer, actualAnswer, false));
+      return;
     }
   }
   console.log(`Congratulations, ${userName()}!`);
