@@ -1,6 +1,8 @@
 /* eslint-disable no-plusplus */
 import readlineSync from 'readline-sync';
-import { greeting, name, number, answer } from '..';
+import {
+  greeting, getName, randomNumber, answer,
+} from '..';
 
 
 export const findGcd = (num1, num2) => {
@@ -22,19 +24,20 @@ export const findGcd = (num1, num2) => {
 
 export const gcdQuestion = () => {
   greeting('gcd');
-  const userName = name();
+  const userName = getName();
   let counter = 0;
   while (counter < 3) {
-    const numberOne = number();
-    const numberTwo = number();
+    const numberOne = randomNumber();
+    const numberTwo = randomNumber();
     console.log(`Question: ${numberOne} ${numberTwo}`);
     const actualAnswer = findGcd(numberOne, numberTwo);
     const userAnswer = readlineSync.question('Your answer:');
-    if (userAnswer == actualAnswer) {
+    if (Number(userAnswer) === actualAnswer) {
       console.log(answer(userName(), userAnswer, actualAnswer, true));
-      counter ++;
+      counter++;
     } else {
       console.log(answer(userName(), userAnswer, actualAnswer, false));
+      return;
     }
   }
   console.log(`Congratulations, ${userName()}!`);
