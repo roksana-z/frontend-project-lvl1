@@ -1,53 +1,44 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable no-plusplus */
-/* eslint-disable consistent-return */
-import readlineSync from 'readline-sync';
-import {
-  greeting, getName, randomNumber, answer,
-} from '..';
 
-export const operators = ['+', '-', '*'];
+import { question, randomNumber } from '..';
 
-export const makeExpression = (arr, operator) => {
-  switch (operator) {
-    case '+':
-      return `${arr[0]} + ${arr[1]}`;
-    case '-':
-      return `${arr[0]} - ${arr[1]}`;
-    case '*':
-      return `${arr[0]} * ${arr[1]}`;
-    default: break;
+const operators = ['+', '-', '*'];
+
+
+const firstOperand = [randomNumber(), randomNumber(), randomNumber()];
+const secondOperand = [randomNumber(), randomNumber(), randomNumber()];
+
+const expression = (num1, num2, operator) => {
+  const result = [];
+  for (let i = 0; i < operator.length; i += 1) {
+    const exp = `${num1[i]} ${operator[i]} ${num2[i]}`;
+    result.push(exp);
   }
+  return result;
 };
 
-export const calc = (arr, operator) => {
-  switch (operator) {
-    case '+':
-      return arr[0] + arr[1];
-    case '-':
-      return arr[0] - arr[1];
-    case '*':
-      return arr[0] * arr[1];
-    default: break;
-  }
-};
-
-export const calcQuestion = () => {
-  greeting('calc');
-  const userName = getName();
-  let i = 0;
-  while (i <= operators.length - 1) {
-    const numbers = [randomNumber(), randomNumber()];
-    console.log(`Question: ${makeExpression(numbers, operators[i])}`);
-    const actualAnswer = calc(numbers, operators[i]);
-    const userAnswer = readlineSync.question('Your answer:');
-    if (userAnswer == actualAnswer) {
-      console.log(answer(userName(), userAnswer, actualAnswer, true));
-      i++;
-    } else {
-      console.log(answer(userName(), userAnswer, actualAnswer, false));
-      return;
+const calcExpression = (num1, num2, operator) => {
+  const result = [];
+  for (let i = 0; i < operator.length; i += 1) {
+    switch (operator[i]) {
+      case '+':
+        result.push(num1[i] + num2[i]);
+        break;
+      case '-':
+        result.push(num1[i] - num2[i]);
+        break;
+      case '*':
+        result.push(num1[i] * num2[i]);
+        break;
+      default: break;
     }
   }
-  console.log(`Congratulations, ${userName()}!`);
+  return result;
 };
+
+const description = 'What is the result of the expression?';
+
+const calcQuestion = () => {
+  question(expression(firstOperand, secondOperand, operators), calcExpression(firstOperand, secondOperand, operators), description);
+};
+
+export default calcQuestion;
