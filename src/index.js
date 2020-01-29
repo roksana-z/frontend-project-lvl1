@@ -1,34 +1,8 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable consistent-return */
+
 import readlineSync from 'readline-sync';
 
-export const greeting = (game) => {
+export const greeting = () => {
   console.log('Welcome to the Brain Games!');
-  switch (game) {
-    case 'even':
-      console.log('Answer "yes" if the number is even, otherwise answer "no".');
-      break;
-    case 'calc':
-      console.log('What is the result of the expression?');
-      break;
-    case 'gcd':
-      console.log('Find the greatest common divisor of given numbers.');
-      break;
-    case 'progression':
-      console.log('What number is missing in the progression?');
-      break;
-    case 'prime':
-      console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-      break;
-    default: break;
-  }
-};
-
-export const answer = (name, userAns, actualAns, bool) => {
-  if (bool === true) {
-    return 'Correct!';
-  }
-  return `'${userAns}' is wrong answer ;(.\nCorrect answer was '${actualAns}'. Let's try again, ${name}`;
 };
 
 export const getName = () => {
@@ -39,9 +13,29 @@ export const getName = () => {
 };
 
 export const getRandomIntInclusive = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  const minNum = Math.ceil(min);
+  const maxNum = Math.floor(max);
+  return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
 };
 
 export const randomNumber = () => getRandomIntInclusive(1, 25);
+
+
+export const question = (arg, actualAnswer, phrase) => {
+  greeting();
+  console.log(phrase);
+  const userName = getName();
+  let i = 0;
+  while (i < arg.length) {
+    console.log(`Question: ${arg[i]}`);
+    const userAnswer = readlineSync.question('Your answer:');
+    if (userAnswer === actualAnswer[i].toString()) {
+      console.log('Correct!');
+      i += 1;
+    } else {
+      console.log(`'${userAnswer}' is wrong answer ;(.\nCorrect answer was '${actualAnswer[i]}'. Let's try again, ${userName()}`);
+      return;
+    }
+  }
+  console.log(`Congratulations, ${userName()}!`);
+};
