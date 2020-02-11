@@ -1,36 +1,22 @@
 
-import { randomNumber, question } from '..';
+import { question } from '..';
+import getRandomIntInclusive from '../utils';
 
 
-const findGcd = (num1, num2) => (num2 === 0 ? num1 : findGcd(num1 % num2));
-
-const operands = [[randomNumber(), randomNumber()], 
-[randomNumber(), randomNumber()], [randomNumber(), randomNumber()]];
-
-const newOperands = [...operands];
-
-const separate = (arr) => {
-  const result = [];
-  for (let i = 0; i < arr.length; i += 1) {
-    const pair = arr[i].join(' ');
-    result.push(pair);
-  }
-  return result;
-};
+const findGcd = (num1, num2) => (num2 === 0 ? num1 : findGcd(num2, num1 % num2));
 
 const description = 'Find the greatest common divisor of given numbers.';
 
-const answers = (arr) => {
-  const result = [];
-  for (let i = 0; i < arr.length; i += 1) {
-    const ans = findGcd(...arr[i]);
-    result.push(ans);
-  }
-  return result;
+const data = () => {
+  const firstOperand = getRandomIntInclusive(0, 25);
+  const secondOperand = getRandomIntInclusive(0, 25);
+  const operands = `${firstOperand}  ${secondOperand}`;
+  const gcd = findGcd(firstOperand, secondOperand);
+  return [operands, gcd];
 };
 
 const gcdQuestion = () => {
-  question(separate(newOperands), answers(operands), description);
+  question(data, description);
 };
 
 export default gcdQuestion;
