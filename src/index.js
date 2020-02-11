@@ -1,41 +1,23 @@
 
 import readlineSync from 'readline-sync';
 
-export const greeting = () => {
+export const question = (dataFunc, phrase) => {
   console.log('Welcome to the Brain Games!');
-};
-
-export const getName = () => {
+  console.log(phrase);
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
-  const saveName = () => name;
-  return saveName;
-};
-
-export const getRandomIntInclusive = (min, max) => {
-  const minNum = Math.ceil(min);
-  const maxNum = Math.floor(max);
-  return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
-};
-
-export const randomNumber = () => getRandomIntInclusive(1, 25);
-
-
-export const question = (arg, actualAnswer, phrase) => {
-  greeting();
-  console.log(phrase);
-  const userName = getName();
-  let i = 0;
-  while (i < arg.length) {
-    console.log(`Question: ${arg[i]}`);
+  for (let round = 0; round < 3; round += 1) {
+    const [quiz, answer] = dataFunc();
+    console.log(`Question: ${quiz}`);
     const userAnswer = readlineSync.question('Your answer:');
-    if (userAnswer === actualAnswer[i].toString()) {
+    if (userAnswer === answer.toString()) {
       console.log('Correct!');
-      i += 1;
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(.\nCorrect answer was '${actualAnswer[i]}'. Let's try again, ${userName()}`);
+      console.log(`'${userAnswer}' is wrong answer ;(.\nCorrect answer was '${answer}'. Let's try again, ${name}`);
       return;
     }
   }
-  console.log(`Congratulations, ${userName()}!`);
+  console.log(`Congratulations, ${name}!`);
 };
+
+export default question;
