@@ -22,4 +22,3 @@ const evenQuestion = () => {
 };
 
 export default evenQuestion;
-t
