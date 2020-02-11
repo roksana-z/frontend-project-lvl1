@@ -1,12 +1,13 @@
 
-import { randomNumber, getRandomIntInclusive, question } from '..';
+import { question } from '..';
+import getRandomIntInclusive from '../utils';
 
-const createRandomProgression = (progressionAmount) => {
-  const start = randomNumber();
+const createRandomProgression = () => {
+  const start = getRandomIntInclusive(0, 25);
   const array = [start];
-  const step = randomNumber();
+  const step = getRandomIntInclusive(0, 25);
   let counter = start;
-  while (array.length < progressionAmount) {
+  while (array.length < 11) {
     counter += step;
     array.push(counter);
   }
@@ -14,46 +15,32 @@ const createRandomProgression = (progressionAmount) => {
 };
 
 const hideDigit = (arr) => {
-  const hiddenI = getRandomIntInclusive(0, arr.length - 1);
+  const index = getRandomIntInclusive(0, arr.length - 1);
   const newArr = [];
-  for (let index = 0; index <= arr.length - 1; index += 1) {
-    if (index === hiddenI) {
+  let hiddenNumber;
+  for (let i = 0; i <= arr.length - 1; i += 1) {
+    if (i === index) {
+      hiddenNumber = arr[i];
       newArr.push('..');
-      index += 1;
+      i += 1;
     }
-    newArr.push(arr[index]);
+    newArr.push(arr[i]);
   }
-  return newArr.join(' ');
+  return [newArr.join(' '), hiddenNumber];
 };
 
 const description = 'What number is missing in the progression?';
 
-const originalProgressions = [createRandomProgression(10), createRandomProgression(10), createRandomProgression(10)];
-
-const copyProgressions = [...originalProgressions];
-
-const modifiedProgressions = copyProgressions.map(hideDigit);
-
-const findNumber = (arr1, arr2) => {
-  for (let i = 0; i < arr2.length; i += 1) {
-    if (!arr2.includes(arr1[i])) {
-      return arr1[i];
-    }
-  }
-  return undefined;
-};
-
-const answers = (arr1, arr2) => {
-  const result = [];
-  for (let i = 0; i < arr2.length; i += 1) {
-    const hiddenNumber = findNumber(arr1[i], arr2[i]);
-    result.push(hiddenNumber);
-  }
-  return result;
+const data = () => {
+  const originalProgression = createRandomProgression();
+  const progressionsData = hideDigit(originalProgression);
+  const modifiedProgression = progressionsData[0];
+  const answer = progressionsData[1];
+  return [modifiedProgression, answer];
 };
 
 const progressionQuestion = () => {
-  question(modifiedProgressions, answers(originalProgressions, modifiedProgressions), description);
+  question(data, description);
 };
 
 export default progressionQuestion;
