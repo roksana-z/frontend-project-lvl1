@@ -1,26 +1,29 @@
 
-import { question, randomNumber } from '..';
+import { question } from '..';
+import getRandomIntInclusive from '../utils';
 
 const isPrime = (num) => {
   if (num <= 1) {
-    return 'no';
+    return false;
   }
-  for (let i = 2; i < 7; i += 1) {
-    if (num % i === 0 && num !== i) {
-      return 'yes';
+  for (let i = 2; i < num; i += 1) {
+    if (num % i === 0) {
+      return false;
     }
   }
-  return 'no';
+  return true;
 };
 
-const numbers = [randomNumber(), randomNumber(), randomNumber()];
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-const answers = numbers.map(isPrime);
-
-const description = 'Answer "yes" if given number is prime. Otherwise answer "no".'
+const data = () => {
+  const number = getRandomIntInclusive(0, 25);
+  const result = isPrime(number) ? 'yes' : 'no';
+  return [number, result];
+};
 
 const isPrimeQuestion = () => {
-  question(numbers, answers, description);
+  question(data, description);
 };
 
 export default isPrimeQuestion;
