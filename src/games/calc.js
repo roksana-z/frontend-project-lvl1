@@ -1,44 +1,36 @@
 
-import { question, randomNumber } from '..';
+import { question } from '..';
+import getRandomIntInclusive from '../utils';
 
 const operators = ['+', '-', '*'];
 
-
-const firstOperand = [randomNumber(), randomNumber(), randomNumber()];
-const secondOperand = [randomNumber(), randomNumber(), randomNumber()];
-
-const expression = (num1, num2, operator) => {
-  const result = [];
-  for (let i = 0; i < operator.length; i += 1) {
-    const exp = `${num1[i]} ${operator[i]} ${num2[i]}`;
-    result.push(exp);
-  }
-  return result;
-};
-
 const calcExpression = (num1, num2, operator) => {
-  const result = [];
-  for (let i = 0; i < operator.length; i += 1) {
-    switch (operator[i]) {
-      case '+':
-        result.push(num1[i] + num2[i]);
-        break;
-      case '-':
-        result.push(num1[i] - num2[i]);
-        break;
-      case '*':
-        result.push(num1[i] * num2[i]);
-        break;
-      default: break;
-    }
+  switch (operator) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    default:
+      return undefined;
   }
-  return result;
 };
 
 const description = 'What is the result of the expression?';
 
+const data = () => {
+  const firstOperand = getRandomIntInclusive(0, 25);
+  const secondOperand = getRandomIntInclusive(0, 25);
+  const operatorsIndex = getRandomIntInclusive(0, operators.length - 1);
+  const operator = operators[operatorsIndex];
+  const expression = `${firstOperand} ${operator} ${secondOperand}`;
+  const resultOfExpression = calcExpression(firstOperand, secondOperand, operator);
+  return [expression, resultOfExpression];
+};
+
 const calcQuestion = () => {
-  question(expression(firstOperand, secondOperand, operators), calcExpression(firstOperand, secondOperand, operators), description);
+  question(data, description);
 };
 
 export default calcQuestion;
