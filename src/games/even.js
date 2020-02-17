@@ -1,5 +1,5 @@
 
-import { question } from '..';
+import { setUpGame } from '..';
 import getRandomIntInclusive from '../utils';
 
 const isEven = (arg) => (arg % 2 === 0);
@@ -11,14 +11,14 @@ const getResult = (num) => {
   return result;
 };
 
-const data = () => {
-  const number = getRandomIntInclusive(0, 25);
-  const answer = getResult(number);
-  return [number, answer];
+const createGamesData = () => {
+  const question = getRandomIntInclusive(0, 25);
+  const answer = getResult(question);
+  return [question, answer];
 };
 
 const evenQuestion = () => {
-  question(data, description);
+  setUpGame(createGamesData, description);
 };
 
 export default evenQuestion;

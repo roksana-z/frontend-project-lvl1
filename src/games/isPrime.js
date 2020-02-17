@@ -1,12 +1,12 @@
 
-import { question } from '..';
+import { setUpGame } from '..';
 import getRandomIntInclusive from '../utils';
 
 const isPrime = (num) => {
   if (num <= 1) {
     return false;
   }
-  for (let i = 2; i < num; i += 1) {
+  for (let i = 2; i < num / 2; i += 1) {
     if (num % i === 0) {
       return false;
     }
@@ -16,14 +16,14 @@ const isPrime = (num) => {
 
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-const data = () => {
-  const number = getRandomIntInclusive(0, 25);
-  const result = isPrime(number) ? 'yes' : 'no';
-  return [number, result];
+const createGamesData = () => {
+  const question = getRandomIntInclusive(0, 25);
+  const answer = isPrime(question) ? 'yes' : 'no';
+  return [question, answer];
 };
 
-const isPrimeQuestion = () => {
-  question(data, description);
+const isPrimesetUpGame = () => {
+  setUpGame(createGamesData, description);
 };
 
-export default isPrimeQuestion;
+export default isPrimesetUpGame;

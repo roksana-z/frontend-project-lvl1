@@ -1,5 +1,5 @@
 
-import { question } from '..';
+import { setUpGame } from '..';
 import getRandomIntInclusive from '../utils';
 
 const operators = ['+', '-', '*'];
@@ -13,24 +13,24 @@ const calcExpression = (num1, num2, operator) => {
     case '*':
       return num1 * num2;
     default:
-      return undefined;
+      return null;
   }
 };
 
 const description = 'What is the result of the expression?';
 
-const data = () => {
+const createGamesData = () => {
   const firstOperand = getRandomIntInclusive(0, 25);
   const secondOperand = getRandomIntInclusive(0, 25);
   const operatorsIndex = getRandomIntInclusive(0, operators.length - 1);
   const operator = operators[operatorsIndex];
-  const expression = `${firstOperand} ${operator} ${secondOperand}`;
-  const resultOfExpression = calcExpression(firstOperand, secondOperand, operator);
-  return [expression, resultOfExpression];
+  const question = `${firstOperand} ${operator} ${secondOperand}`;
+  const answer = calcExpression(firstOperand, secondOperand, operator);
+  return [question, answer.toString()];
 };
 
 const calcQuestion = () => {
-  question(data, description);
+  setUpGame(createGamesData, description);
 };
 
 export default calcQuestion;
