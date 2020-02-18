@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/roksana-z/frontend-project-lvl1.svg?branch=master)](https://travis-ci.com/roksana-z/frontend-project-lvl1)
 
 brain-games - set of intellectual console games.
-For intstallation enter 'npm link frontend-project-lvl1' command in terminal.
+For intstallation enter `npm link frontend-project-lvl1` command in terminal.
 
 brain-even - a game where player needs to answer if the given number is even.
 <a href="https://asciinema.org/a/qIRfa6pPp291aG3PyAS4n8a86" target="_blank"><img src="https://asciinema.org/a/qIRfa6pPp291aG3PyAS4n8a86.svg" /></a>
