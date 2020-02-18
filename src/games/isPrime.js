@@ -22,8 +22,8 @@ const createGamesData = () => {
   return [question, answer];
 };
 
-const isPrimesetUpGame = () => {
+const isPrimeQuestion = () => {
   setUpGame(createGamesData, description);
 };
 
-export default isPrimesetUpGame;
+export default isPrimeQuestion;
