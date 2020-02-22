@@ -1,5 +1,5 @@
 
-import { setUpGame } from '..';
+import { makeGame } from '..';
 import getRandomIntInclusive from '../utils';
 
 const isPrime = (num) => {
@@ -16,14 +16,12 @@ const isPrime = (num) => {
 
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-const createGamesData = () => {
+const createGameData = () => {
   const question = getRandomIntInclusive(0, 25);
   const answer = isPrime(question) ? 'yes' : 'no';
   return [question, answer];
 };
 
-const isPrimeQuestion = () => {
-  setUpGame(createGamesData, description);
+export default () => {
+  makeGame(createGameData, description);
 };
-
-export default isPrimeQuestion;

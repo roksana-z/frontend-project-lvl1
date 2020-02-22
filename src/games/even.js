@@ -1,5 +1,5 @@
 
-import { setUpGame } from '..';
+import { makeGame } from '..';
 import getRandomIntInclusive from '../utils';
 
 const isEven = (arg) => (arg % 2 === 0);
@@ -11,14 +11,12 @@ const getResult = (num) => {
   return result;
 };
 
-const createGamesData = () => {
+const createGameData = () => {
   const question = getRandomIntInclusive(0, 25);
   const answer = getResult(question);
   return [question, answer];
 };
 
-const evenQuestion = () => {
-  setUpGame(createGamesData, description);
+export default () => {
+  makeGame(createGameData, description);
 };
-
-export default evenQuestion;

@@ -1,5 +1,5 @@
 
-import { setUpGame } from '..';
+import { makeGame } from '..';
 import getRandomIntInclusive from '../utils';
 
 const operators = ['+', '-', '*'];
@@ -19,18 +19,16 @@ const calcExpression = (num1, num2, operator) => {
 
 const description = 'What is the result of the expression?';
 
-const createGamesData = () => {
+const createGameData = () => {
   const firstOperand = getRandomIntInclusive(0, 25);
   const secondOperand = getRandomIntInclusive(0, 25);
-  const operatorsIndex = getRandomIntInclusive(0, operators.length - 1);
-  const operator = operators[operatorsIndex];
+  const operatorIndex = getRandomIntInclusive(0, operators.length - 1);
+  const operator = operators[operatorIndex];
   const question = `${firstOperand} ${operator} ${secondOperand}`;
   const answer = calcExpression(firstOperand, secondOperand, operator);
   return [question, answer.toString()];
 };
 
-const calcQuestion = () => {
-  setUpGame(createGamesData, description);
+export default () => {
+  makeGame(createGameData, description);
 };
-
-export default calcQuestion;
